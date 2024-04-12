@@ -16,27 +16,92 @@
       font-family: sans-serif;
       background-color: #ededed;
     }
-    polaris-chip {
-      margin: 16px;
+
+    #heading1,
+    #heading2 {
+      text-align: center;
     }
+
+    #heading2 {
+      padding-bottom: var(--ddd-spacing-12);
+    }
+
+    .sample-text1,
+    .sample-text2,
+    .sample-text3,
+    .sample-text4, 
+    .sample-text5{
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      padding-left: var(--ddd-spacing-18);
+      padding-right: var(--ddd-spacing-18);
+      padding-bottom: var(--ddd-spacing-12);
+    }
+
+    #italy-image,
+    #france-image, 
+    #greece-image,
+    #swiss-image,
+    #austria-image {
+      margin-left: var(--ddd-spacing-6);
+      margin-right: var(--ddd-spacing-6);
+    }
+
+    #italy-text,
+    #france-text,
+    #greece-text,
+    #swiss-text,
+    #austria-text {
+      margin-left: var(--ddd-spacing-6);
+      margin-right: var(--ddd-spacing-6);
+    }
+
   </style>
-  <title>polaris-chip / my-card</title>
 </head>
 
 <body>
-  <h1>polaris-chip</h1>
-  <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip title="News of Record" link="https://psu.edu/"></polaris-chip>
-  <polaris-chip title="Faculty and Staff"></polaris-chip>
-  <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
-  <polaris-chip title="Grants and donations"></polaris-chip>
+  <h1 id="heading1">Image Gallery</h1>
+  <h3 id="heading2">View the gallery by clicking on the images below.</h3>
 
-  <h1>my-card</h1>
-  <my-card></my-card>
+  <div class="sample-text1">
+    <media-image id="italy-image" image-url="https://cdn.britannica.com/82/195482-050-2373E635/Amalfi-Italy.jpg"></media-image>
+    <p id="italy-text">Italy. Lorem ipsum dolor sit amet, oblique delenit dolorem nec ex. Id mandamus repudiare eos. Saperet conceptam te has, mei oratio dictas ut. Cum reque singulis intellegebat id, ea congue recusabo nec, ex qui eius nostro fabellas. Ei tation causae sea. Ei nec natum impetus voluptua, facilis officiis elaboraret ad nam.
+      Ne quo blandit nominati disputando, ex ipsum timeam accusamus duo. Sed nobis facilisis reprehendunt ex. Est an exerci invenire consetetur, eam quas melius pertinacia an. Nobis accusamus pro te. Mediocrem contentiones an has, porro delectus argumentum mel te. Has ne hinc integre quaestio.</p>
+  </div>
+
+  <div class="sample-text2">
+    <p id="france-text">France. Lorem ipsum dolor sit amet, oblique delenit dolorem nec ex. Id mandamus repudiare eos. Saperet conceptam te has, mei oratio dictas ut. Cum reque singulis intellegebat id, ea congue recusabo nec, ex qui eius nostro fabellas. Ei tation causae sea. Ei nec natum impetus voluptua, facilis officiis elaboraret ad nam.
+      Ne quo blandit nominati disputando, ex ipsum timeam accusamus duo. Sed nobis facilisis reprehendunt ex. Est an exerci invenire consetetur, eam quas melius pertinacia an. Nobis accusamus pro te. Mediocrem contentiones an has, porro delectus argumentum mel te. Has ne hinc integre quaestio. Saperet conceptam te has, mei oratio dictas ut. 
+      Cum reque singulis intellegebat id, ea congue recusabo nec, ex qui eius nostro fabellas. Ei tation causae sea. Ei nec natum impetus voluptua, facilis officiis elaboraret ad nam.
+      Ne quo blandit nominati disputando, ex ipsum timeam accusamus duo. Sed nobis facilisis reprehendunt ex. Lorem ipsum dolor sit amet, oblique delenit dolorem nec ex. Id mandamus repudiare eos. Saperet conceptam te has, mei oratio dictas ut. Cum reque singulis intellegebat id, ea congue recusabo nec, ex qui eius nostro fabellas. Ei tation causae sea.
+      Ei nec natum impetus voluptua, facilis officiis elaboraret ad nam.</p>
+    <media-image id="france-image" image-url="https://media.timeout.com/images/105237848/image.jpg"></media-image>
+  </div>
+
+  <div class="sample-text3">
+    <media-image id="greece-image" image-url="https://www.odysseys-unlimited.com/wp-content/uploads/2023/05/Lead-AdobeStock_134362781-scaled.jpeg"></media-image>
+    <p id="greece-text">Greece. Lorem ipsum dolor sit amet, oblique delenit dolorem nec ex. Id mandamus repudiare eos. Saperet conceptam te has, mei oratio dictas ut. Cum reque singulis intellegebat id, ea congue recusabo nec, ex qui eius nostro fabellas. Ei tation causae sea. Ei nec natum impetus voluptua, facilis officiis elaboraret ad nam.
+      Ne quo blandit nominati disputando, ex ipsum timeam accusamus duo. Sed nobis facilisis reprehendunt ex. Est an exerci invenire consetetur, eam quas melius pertinacia an. Nobis accusamus pro te. Mediocrem contentiones an has, porro delectus argumentum mel te. Has ne hinc integre quaestio.</p>
+  </div>
+
+  <div class="sample-text4">
+    <p id="swiss-text">Switzerland. Lorem ipsum dolor sit amet, oblique delenit dolorem nec ex. Id mandamus repudiare eos. Saperet conceptam te has, mei oratio dictas ut. Cum reque singulis intellegebat id, ea congue recusabo nec, ex qui eius nostro fabellas. Ei tation causae sea. Ei nec natum impetus voluptua, facilis officiis elaboraret ad nam.
+      Ne quo blandit nominati disputando, ex ipsum timeam accusamus duo. Sed nobis facilisis reprehendunt ex. Est an exerci invenire consetetur, eam quas melius pertinacia an. Nobis accusamus pro te. Mediocrem contentiones an has, porro delectus argumentum mel te. Has ne hinc integre quaestio.</p>
+    <media-image id="swiss-image" image-url="https://www.flamingotravels.net/_next/image?url=https%3A%2F%2Fimgcdn.flamingotravels.co.in%2FImages%2FCountry%2Fswitzerland-best-time-to-visit.jpg&w=1080&q=75"></media-image>
+  </div>
+
+  <div class="sample-text5">
+    <media-image id="austria-image" image-url="https://cdn.britannica.com/20/191120-050-B6C0B7E9/village-Hallstatt-Alps-Austria.jpg"></media-image>
+    <p id="austria-text">Austria. Lorem ipsum dolor sit amet, oblique delenit dolorem nec ex. Id mandamus repudiare eos. Saperet conceptam te has, mei oratio dictas ut. Cum reque singulis intellegebat id, ea congue recusabo nec, ex qui eius nostro fabellas. Ei tation causae sea. Ei nec natum impetus voluptua, facilis officiis elaboraret ad nam.
+      Ne quo blandit nominati disputando, ex ipsum timeam accusamus duo. Sed nobis facilisis reprehendunt ex. Est an exerci invenire consetetur, eam quas melius pertinacia an. Nobis accusamus pro te. Mediocrem contentiones an has, porro delectus argumentum mel te. Has ne hinc integre quaestio.</p>
+  </div>
+  
+  <!--<image-gallery></image-gallery>--->
 
   <!-- this is what is bringing in the definition for this tag -->
-  <script type="module" src="./src/polaris-chip.js"></script>
-  <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/media-image.js"></script>
+  <script type="module" src="./src/image-gallery.js"></script>
 </body>
 
 </html>
