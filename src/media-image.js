@@ -10,22 +10,49 @@ export class MediaImage extends DDD {
 
   constructor() {
     super();
-    this.imageURL = "#";
+    this.imageURL = "";
+    this.caption = "#";
+    this.description = "#";
+    /*(
+        listen for click 
+    )
+    */
   }
 
   static get styles() {
     return css`
       :host {
         display: block;
+        --ddd-primary-color: var(--ddd-theme-default-accent);
+        --ddd-secondary-color: var(--ddd-theme-default-potentialMidnight);
       }
 
       .image-wrapper {
         align-items: center;      
+        padding: var(--ddd-spacing-6);
+        background-color: var(--ddd-primary-color);
+        border: var(--ddd-border-sm);
+        border-color: var(--ddd-secondary-color);
+        border-radius: var(--ddd-radius-sm);   
+        transition: all ease-in .3s;    
       }
 
       .image-wrapper img {
-        width: 300px;
+        width: 500px;
         height: auto;
+        border: var(--ddd-border-md);
+        border-color: var(--ddd-theme-default-potentialMidnight);
+        border-radius: var(--ddd-radius-sm);
+      }
+
+      .image-wrapper:hover,
+      .image-wrapper:focus {
+        transform: translate(8px, -8px);
+        box-shadow: -8px 8px var(--ddd-theme-default-potentialMidnight);
+      }
+
+      .image-caption {
+        text-align: center;        
       }
 
     `;
@@ -40,6 +67,7 @@ export class MediaImage extends DDD {
         <div class="image-wrapper"> 
             <img class="image" src="${this.imageURL}">
         </div>
+        <p class="image-caption">${this.caption}</p>
     `;
   }
 
@@ -47,6 +75,8 @@ export class MediaImage extends DDD {
     return {
         ...super.properties,
         imageURL: { type: String, attribute: "image-url" },
+        caption: { type: String, attribute: "image-caption" },
+        description: { type: String },
     };
   }
 }
