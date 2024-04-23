@@ -13,9 +13,9 @@ export class MediaImage extends DDD {
     this.imageURL = "";
     this.caption = "#";
     this.description = "#";
-    /*(
+    /*
         listen for click 
-    )
+    
     */
   }
 
@@ -25,6 +25,7 @@ export class MediaImage extends DDD {
         display: block;
         --ddd-primary-color: var(--ddd-theme-default-accent);
         --ddd-secondary-color: var(--ddd-theme-default-potentialMidnight);
+        font-family: var(--ddd-font-primary);
       }
 
       .image-wrapper {
@@ -58,8 +59,17 @@ export class MediaImage extends DDD {
     `;
   }
 
-  openChanged(e) {
-
+  imageClicked() {
+    const e = new CustomEvent("image-clicked", {
+        bubbles: true,
+        composed: true,
+        canceleable: true,
+        detail: {
+            opened: true,
+            invokedBy: this.invokedBy,
+        },
+    });
+    this.dispatchEvent(e);
   }
 
   render() {
