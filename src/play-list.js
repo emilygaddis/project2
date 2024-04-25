@@ -30,28 +30,14 @@ export class PlayList extends DDD {
         position: fixed;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
       }
 
       .opened-wrapper {
-        max-width: 900px; //needs to be changed when screen smaller
-        width: 100%;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .image-wrapper {       
-        position: relative;
-        align-items: center;
-        justify-content: content;
         width: 900px;
         height: auto;
         background-color: var(--ddd-theme-default-accent);
@@ -59,36 +45,55 @@ export class PlayList extends DDD {
         border: var(--ddd-border-sm);
         border-color: var(--ddd-theme-default-potentialMidnight);
         border-radius: var(--ddd-radius-sm);
-        margin-top: var(--ddd-spacing-10);
+        align-items: center;
+        justify-content: center;
+      }
 
-        padding: var(--ddd-spacing-10);
-        padding-right: var(--ddd-spacing-11);
+      .image-wrapper2 {
+        align-items: center;
+        justify-content: center;
+      }
+
+      .image-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
       }
 
       .image-wrapper img {
         display: block;
-        width: 100%;
-        height: auto;
+        position: relative;
+        width: auto;
+        height: 300px;
         border: var(--ddd-border-md);
         border-color: var(--ddd-theme-default-potentialMidnight);
         border-radius: var(--ddd-radius-sm);
+        margin-top: var(--ddd-spacing-2);
+        margin-bottom: var(--ddd-spacing-2);
       }
 
       .image-caption {
         top: 0;
         bottom: 0;
+        text-align: center;
+        margin-bottom: var(--ddd-spacing-6);
+        margin-top: var(--ddd-spacing-10);
       }
 
       .image-description {
         text-align: center;
         justify-content: center;  
         display: flex;
-        position: absolute;
+        position: relative;
         bottom: 0;
         left: 0;
         width: 100%;
-        padding: 0 var(--ddd-spacing-10);
-        box-sizing: border-box; 
+        padding: 0 var(--ddd-spacing-18);
+        box-sizing: border-box;
+        margin-top: var(--ddd-spacing-6);
+        margin-bottom: var(--ddd-spacing-10);
       }
 
       .top-elements {
@@ -160,7 +165,7 @@ export class PlayList extends DDD {
       .back-arrow,
       .next-arrow {
         display: flex;
-        position: absolute;
+        position: fixed;
         top: 50%;
         transform: translateY(-50%);
         cursor: pointer;
@@ -291,7 +296,9 @@ export class PlayList extends DDD {
 
             <div class="image-wrapper"> 
               <div class="image-caption">${this.captions[this.currImageNum]}</div>
-              <img class="current-image" src=${this.images[this.currImageNum]}>
+              <div class="image-wrapper2">
+                <img class="current-image" src=${this.images[this.currImageNum]}>
+              </div>
               <div class="image-description">${this.descriptions[this.currImageNum]}</div>
             </div>
           
