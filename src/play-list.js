@@ -9,9 +9,11 @@ export class PlayList extends DDD {
 
   constructor() {
     super();
-    this.image = [];
+    this.images = [];
+    this.captions = [];
+    this.descriptions = [];
     this.currImageNum = 0;
-    this.totalImageNum = this.image.length;
+    this.totalImageNum = this.images.length;
     this.isVisible = false;
   }
 
@@ -19,88 +21,185 @@ export class PlayList extends DDD {
     return css`
       :host {
         display: block;
-        opacity: .9;
         font-family: var(--ddd-font-primary);
+      }
+
+      .gallery-wrapper {
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .opened-wrapper {
+        max-width: 900px; //needs to be changed when screen smaller
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image-wrapper {       
+        position: relative;
+        align-items: center;
+        justify-content: content;
+        width: 900px;
+        height: auto;
+        background-color: var(--ddd-theme-default-accent);
+        box-sizing: border-box;
+        border: var(--ddd-border-sm);
+        border-color: var(--ddd-theme-default-potentialMidnight);
+        border-radius: var(--ddd-radius-sm);
+        margin-top: var(--ddd-spacing-10);
+
+        padding: var(--ddd-spacing-10);
+        padding-right: var(--ddd-spacing-11);
+      }
+
+      .image-wrapper img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: var(--ddd-border-md);
+        border-color: var(--ddd-theme-default-potentialMidnight);
+        border-radius: var(--ddd-radius-sm);
+      }
+
+      .image-caption {
+        top: 0;
+        bottom: 0;
+      }
+
+      .image-description {
+        text-align: center;
+        justify-content: center;  
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 0 var(--ddd-spacing-10);
+        box-sizing: border-box; 
       }
 
       .top-elements {
         display: flex;
+        align-items: center;
         flex-direction: row;
         justify-content: space-between;
         font-size: 16px;
-        z-index: 1;
-
       }
     
       .image-counter {
+        margin: var(--ddd-spacing-2);
+        justify-content: left;
         position: fixed;
-        left: 0;
+        font-size: 16px;
+        color: var(--ddd-theme-default-limestoneGray);
+        left: var(--ddd-spacing-1);
+        top: var(--ddd-spacing-1);
         z-index: 1;
       }
 
-      .close-button-wrapper {
-        align-items: center;
-
-      }
-
       .close-button {
+        margin: var(--ddd-spacing-2);
+        justify-content: right;
+        cursor: pointer;
         position: fixed;
         font-family: var(--ddd-font-primary);
+        background-color: transparent;
+        border-width: 0px;
+        color: var(--ddd-theme-default-limestoneGray);
         font-size: 16px;
-        right: 0;
+        top: var(--ddd-spacing-1);
+        right: var(--ddd-spacing-1);
         z-index: 1;
         display: flex;
         align-items: center;
       }
 
       .close-icon {
+        align-items: center;
+        justify-content: center;
         width: 24px;
         height: 24px;
+        fill: var(--ddd-theme-default-limestoneGray);
+      }
+
+      .close-button:hover {
+        .close-button-text {
+          color: var(--ddd-theme-default-white);
+        }
+
+        .close-icon {
+          fill: var(--ddd-theme-default-white);
+        }
       }
 
       .close-button-text {
         display: flex;
         align-items: center;
+        margin: 0;
       }
 
-      .image-wrapper {
-        position: relative;
-        display: block;
-        align-items: center;
-        text-align: center;
-      }
-
-      .image-wrapper img {
-        display: block;
-        margin: 0 auto;
+      .back-button-wrapper,
+      .next-button-wrapper {
+        display: flex;
+        
       }
 
       .back-arrow,
       .next-arrow {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        cursor: pointer;
+        display: flex;
+      }
+
+      .back-icon,
+      .next-icon {
+        fill: var(--ddd-theme-default-limestoneGray);
+        width: 24px;
+        height: 24px;
       }
 
       .back-arrow {
         display: flex;
-        align-items: center; /* Align items vertically */
-        justify-content: center; /* Center content horizontally */
-        position: absolute;
         top: 50%;
         left: 0;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
+        width: 38px;
+        height: 38px;
+        border-width: 0px;
       }
 
-      .back-arrow-design-wrap {
+      .back-arrow-design-wrap,
+      .next-arrow-design-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center; 
         width: 100%;
         height: 100%;
         position: fixed;
+        background-color: var(--ddd-theme-default-potentialMidnight);
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+
+      .back-arrow:hover .back-icon, 
+      .next-arrow:hover .next-icon{
+        fill: var(--ddd-theme-default-white);
       }
 
       .next-arrow {
@@ -111,127 +210,121 @@ export class PlayList extends DDD {
         top: 50%;
         right: 0;
         transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
+        width: 38px;
+        height: 38px;
+        border-width: 0px;
       }
 
-      .next-arrow-design-wrap {
-        width: 100%;
-        height: 100%;
-      }
-
-      .current-image {
-        width: 70%;
-        height: auto;
-        margin: 0 auto; 
-        display: block;
-      }
-
-      .image-description {
-        position: fixed;
-        text-align: center;
-      }
     `;
   }
 
   firstUpdated() {
-    document.addEventListener( 'image-clicked', (e) => {
-      var url = e.target.attributes.imageurl.nodeValue;
-      this.imageNumber = this.image.indexOf(url);
 
+    // listens for when an image is clicked, then finds the url to indicate which image is clicked
+    document.addEventListener('image-clicked', (e) => {
+      var url = e.target.attributes.imageUrl.nodeValue;
+      this.currImageNum = this.images.indexOf(url);
+  
+      // makes gallery visible
       if(this.isVisible == false) {
-        this.visible = true;
+        this.isVisible = true;
       }
 
+      this.openGallery();
     })
 
+    // takes all current images on the page and puts them into the image array
     var data = document.querySelectorAll('media-image');
     data.forEach(element => {
-      console.log(element.getAttribute("imageurl"))
-      this.imageList.push(element.getAttribute("imageurl"))
+      console.log(element.getAttribute("imageUrl"))
+      this.images.push(element.getAttribute("imageUrl"))
+      this.captions.push(element.getAttribute("caption"))
+      this.descriptions.push(element.getAttribute("description"))
     });
-
-    this.requestUpdate();
-  }
-
-  makeVisible() {
-    this.isVisible = !this.isVisible;
+    this.totalImageNum = this.images.length;
   }
 
   openGallery() {
-    let prevIndex = this.currImageNum - 1;
-    let nextIndex = this.currImageNum + 1;
-
-    if (prevIndex < 0) {
-      prevIndex = (prevIndex + this.image.length) % (this.image.length);
-    }
-
-    if (nextIndex >= this.totalImageNum) {
-      nextIndex = (nextIndex) % (this.image.length);
-    }
+    //prevents from going to an unknown index
+    let prevIndex = (this.currImageNum - 1 + this.totalImageNum) % this.totalImageNum;
+    let nextIndex = (this.currImageNum + 1) % this.totalImageNum;
 
     return html`
         <div class="gallery-wrapper">
+          <div class="opened-wrapper">
             <div class="top-elements">
+
                 <div class="image-counter">
-                    ${this.currImageNum + 1}
-                    / 
-                    ${this.totalImageNum}
+                    ${this.currImageNum + 1} / ${this.totalImageNum}
                 </div>
 
                 <div class="close-button-wrapper">
-                  <button class="close-button">
-                    <svg class="close-icon" viewbox="0 0 24 24">
-                        <path d="M8.939 7.224l5.162-5.162A1.21 1.21 0 1012.39.351l-5.161 5.16L2.067.349A1.21 1.21 0 10.356 2.06l5.159 5.164-5.162 5.162a1.21 1.21 0 101.711 1.711l5.162-5.162 5.162 5.162a1.21 1.21 0 101.711-1.711z" data-name="Icon ionic-ios-close"></path>
+                  <button class="close-button" @click="${this.closeGallery}">
+                    <svg class="close-icon" viewbox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+                      <path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"></path>
                     </svg>
                     <p class="close-button-text">Close</p>
                   </button>
                 </div>
+
             </div>
 
-            <div class="button-wrapper">
-              <button class="back-arrow">
+            <div class="back-button-wrapper">
+              <button class="back-arrow" @click="${this.leftClick}">
                 <div class="back-arrow-design-wrap">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M11.28 15.7l-1.34 1.37L5 12l4.94-5.07 1.34 1.38-2.68 2.72H19v1.94H8.6z"></path>
                   </svg>
                 </div>
               </button>
+            </div>
               
-              <button class="next-arrow">
+            <div class="next-button-wrapper">
+              <button class="next-arrow" @click="${this.rightClick}">
                 <div class="next-arrow-design-wrap">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <svg class="next-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-icon2">
                     <path d="M15.4 12.97l-2.68 2.72 1.34 1.38L19 12l-4.94-5.07-1.34 1.38 2.68 2.72H5v1.94z"></path>
                   </svg>
                 </div>
               </button>
             </div>
 
-            <div class="image-wrapper">
-              <img class="current-image" src=${this.image[this.currImageNum].imageurl}>
-              <p class="image-description">Italy</p>
+            <div class="image-wrapper"> 
+              <div class="image-caption">${this.captions[this.currImageNum]}</div>
+              <img class="current-image" src=${this.images[this.currImageNum]}>
+              <div class="image-description">${this.descriptions[this.currImageNum]}</div>
             </div>
+          
+          </div>
         </div>
     `;
   }
 
-  closedGallery() {
-    return html`
-    `;
+  closeGallery() {
+    this.isVisible = false;
+  }
+
+  leftClick() {
+    this.currImageNum = (this.currImageNum - 1 + this.totalImageNum) % this.totalImageNum; // Circular decrement
+    this.requestUpdate();
+  }
+
+  rightClick() {
+    this.currImageNum = (this.currImageNum + 1) % this.totalImageNum; // Circular increment
+    this.requestUpdate();
   }
 
   render() {
-    if(this.isVisible == true) {
-      return this.openGallery();
-    } else {
-      return this.closedGallery();
-    }
+    return this.isVisible ? this.openGallery() : html``; // Conditionally render gallery
+
   }
 
   static get properties() {
     return {
         ...super.properties,
-        image: { type: Array },
+        images: { type: Array },
+        captions: { type: Array },
+        descriptions: {type: Array },
         currImageNum: { type: Number, attribute: "current-image-number" },
         totalImageNum: { type: Number, attribute: "total-image-number" },
         isVisible: { type: Boolean, attribute: "is-visible" },

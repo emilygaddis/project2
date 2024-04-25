@@ -13,10 +13,6 @@ export class MediaImage extends DDD {
     this.imageURL = "";
     this.caption = "#";
     this.description = "#";
-    /*
-        listen for click 
-    
-    */
   }
 
   static get styles() {
@@ -60,7 +56,7 @@ export class MediaImage extends DDD {
   }
 
   imageClicked() {
-    const e = new CustomEvent("image-clicked", {
+    const evt = new CustomEvent("image-clicked", {
         bubbles: true,
         composed: true,
         canceleable: true,
@@ -69,12 +65,12 @@ export class MediaImage extends DDD {
             invokedBy: this.invokedBy,
         },
     });
-    this.dispatchEvent(e);
+    this.dispatchEvent(evt);
   }
 
   render() {
     return html`
-        <div class="image-wrapper"> 
+        <div class="image-wrapper" @click = "${this.imageClicked}"> 
             <img class="image" src="${this.imageURL}">
         </div>
         <p class="image-caption">${this.caption}</p>
@@ -84,8 +80,8 @@ export class MediaImage extends DDD {
   static get properties() {
     return {
         ...super.properties,
-        imageURL: { type: String, attribute: "image-url" },
-        caption: { type: String, attribute: "image-caption" },
+        imageURL: { type: String },
+        caption: { type: String },
         description: { type: String },
     };
   }
