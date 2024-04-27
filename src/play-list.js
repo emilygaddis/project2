@@ -20,6 +20,7 @@ export class PlayList extends DDD {
   static get styles() {
     return css`
       :host {
+        
         display: block;
         font-family: var(--ddd-font-primary);
       }
@@ -65,8 +66,8 @@ export class PlayList extends DDD {
       .image-wrapper img {
         display: block;
         position: relative;
-        width: auto;
-        height: 300px;
+        width: 500px;
+        height: auto;
         border: var(--ddd-border-md);
         border-color: var(--ddd-theme-default-potentialMidnight);
         border-radius: var(--ddd-radius-sm);
