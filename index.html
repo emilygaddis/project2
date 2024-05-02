@@ -22,6 +22,10 @@
       text-align: center;
     }
 
+    #heading1 {
+      margin-top: var(--ddd-spacing-6);
+    }
+
     #heading2 {
       padding-bottom: var(--ddd-spacing-18);
     }
@@ -96,13 +100,15 @@
 </head>
 
 <body>
-
+  
   <div class="outline-menu-wrapper">
     <svg class="hamburger-menu" focusable="false" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
     <div class="menu-text-wrapper">
       <p class="menu-text">Outline Designer</p>
     </div>
   </div>
+
+  <outline-designer></outline-designer>
 
   <h1 id="heading1">Image Gallery</h1>
   <h3 id="heading2">View the gallery by clicking on the images below.</h3>
@@ -147,8 +153,7 @@
 
   </div>
 
-  <play-list></play-list>
-  <outline-designer></outline-designer>
+  <play-list></play-list>  
 
   <script type="module" src="./src/media-image.js"></script>
   <script type="module" src="./src/play-list.js"></script>

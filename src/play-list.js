@@ -20,7 +20,6 @@ export class PlayList extends DDD {
   static get styles() {
     return css`
       :host {
-        
         display: block;
         font-family: var(--ddd-font-primary);
       }
